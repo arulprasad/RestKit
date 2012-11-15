@@ -24,10 +24,27 @@
 
 @class RKObjectmapping;
 
+/***
+ * RKRelationshipMergeStrategyDefault is set by default
+ * Stratagy by default is RKRelationshipMergeStrategyReplace
+ * RKRelationshipMergeStrategyUnion adds new relationship objects
+ * to the old ones. Old objects are saved.
+ * RKRelationshipMergeStrategyReplace replaces old objects with
+ * the new ones. Old objects are saved, but relationships are removed
+ **/
+typedef enum{
+    RKRelationshipMergeStrategyDefault,
+    RKRelationshipMergeStrategyUnion,
+    RKRelationshipMergeStrategyReplace
+} RKRelationshipMergeStrategy;
+
 @interface RKObjectRelationshipMapping : RKObjectAttributeMapping
 
 @property (nonatomic, retain) RKObjectMappingDefinition *mapping;
 @property (nonatomic, assign) BOOL reversible;
+@property (nonatomic) RKRelationshipMergeStrategy mergeStrategy;
+
++ (RKObjectRelationshipMapping *)mappingFromKeyPath:(NSString *)sourceKeyPath toKeyPath:(NSString *)destinationKeyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping reversible:(BOOL)reversible mergeStrategy:(RKRelationshipMergeStrategy)strategy;
 
 + (RKObjectRelationshipMapping *)mappingFromKeyPath:(NSString *)sourceKeyPath toKeyPath:(NSString *)destinationKeyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping;
 

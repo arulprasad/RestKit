@@ -573,14 +573,41 @@ BOOL RKObjectIsValueEqualToValue(id sourceValue, id destinationValue) {
                     if ([destinationObject isKindOfClass:[NSSet class]]) {
                         RKLogTrace(@"Mapped NSSet relationship object from keyPath '%@' to '%@'. Value: %@", relationshipMapping.sourceKeyPath, relationshipMapping.destinationKeyPath, destinationObject);
                         NSMutableSet *destinationSet = [self.destinationObject mutableSetValueForKey:relationshipMapping.destinationKeyPath];
+                        if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyDefault) {
+                            [destinationSet setSet:destinationObject];
+                        }else if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyReplace){
+                            [destinationSet setSet:destinationObject];
+                        }else if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyUnion){
+                            [destinationSet unionSet:destinationObject];
+                        }else{
+                            [destinationSet setSet:destinationObject];
+                        }
                         [destinationSet unionSet:destinationObject];
                     } else if ([destinationObject isKindOfClass:[NSArray class]]) {
                         RKLogTrace(@"Mapped NSArray relationship object from keyPath '%@' to '%@'. Value: %@", relationshipMapping.sourceKeyPath, relationshipMapping.destinationKeyPath, destinationObject);
                         NSMutableArray *destinationArray = [self.destinationObject mutableArrayValueForKey:relationshipMapping.destinationKeyPath];
-                        [destinationArray setArray:destinationObject];
+                        if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyDefault) {
+                            [destinationArray setArray:destinationObject];
+                        }else if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyReplace){
+                            [destinationArray setArray:destinationObject];
+                        }else if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyUnion){
+                            [destinationArray addObjectsFromArray:destinationObject];
+                        }else{
+                            [destinationArray setArray:destinationObject];
+                        }
                     } else if (nsOrderedSetClass && [destinationObject isKindOfClass:nsOrderedSetClass]) {
                         RKLogTrace(@"Mapped NSOrderedSet relationship object from keyPath '%@' to '%@'. Value: %@", relationshipMapping.sourceKeyPath, relationshipMapping.destinationKeyPath, destinationObject);
-                        [self.destinationObject setValue:destinationObject forKey:relationshipMapping.destinationKeyPath];
+                        if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyDefault) {
+                            [self.destinationObject setValue:destinationObject forKey:relationshipMapping.destinationKeyPath];
+                        }else if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyReplace){
+                            [self.destinationObject setValue:destinationObject forKey:relationshipMapping.destinationKeyPath];
+                        }else if (relationshipMapping.mergeStrategy == RKRelationshipMergeStrategyUnion){
+                            NSMutableOrderedSet * orderedSet = [self.destinationObject mutableOrderedSetValueForKey:relationshipMapping.destinationKeyPath];
+                            [orderedSet addObjectsFromArray:[destinationObject array]];
+                            [self.destinationObject setValue:orderedSet forKey:relationshipMapping.destinationKeyPath];
+                        }else{
+                            [self.destinationObject setValue:destinationObject forKey:relationshipMapping.destinationKeyPath];
+                        }
                     }
                 } else {
                     RKLogTrace(@"Mapped relationship object from keyPath '%@' to '%@'. Value: %@", relationshipMapping.sourceKeyPath, relationshipMapping.destinationKeyPath, destinationObject);

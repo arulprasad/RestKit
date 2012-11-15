@@ -385,6 +385,35 @@ relationship. Relationships are processed using an object mapping as well.
 /**
  Instantiate and add an RKObjectRelationshipMapping instance targeting a keyPath within the mappable
  source data to a relationship property on the target object.
+ 
+ Used to quickly define mappings where the source value is deeply nested in the mappable data or
+ the source and destination do not have corresponding names.
+ 
+ Merge strategy defines merge strategy for updating old relationship objects with new relationship objects
+ 
+ Examples:
+ // We want to add new relationship objects to the old ones
+ [mapping mapKeyPath:@"best_friend" toRelationship:@"bestFriend" withObjectMapping:friendMapping
+    mergeStrategy:RKRelationshipMergeStrategyUnion];
+ 
+ // We want to replace old relationship objects with the new relationship objects
+ [mapping mapKeyPath:@"best_friend" toRelationship:@"bestFriend" withObjectMapping:friendMapping
+ mergeStrategy:RKRelationshipMergeStrategyReplace];
+ 
+ //By default merge strategy defines replace strategy RKRelationshipMergeStrategyDefault->RKRelationshipMergeStrategyReplace
+ 
+ @param sourceKeyPath A key-value coding keyPath to fetch the mappable value from
+ @param destinationRelationship The relationship name to assign the mapped value to
+ @param objectMapping An object mapping to use when processing the nested objects
+ @param mergeStrategy a merge strategy for updating relationship when processing the nested objects
+ @see RKObjectRelationshipMapping
+ */
+
+- (void)mapKeyPath:(NSString *)relationshipKeyPath toRelationship:(NSString *)keyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping mergeStrategy:(RKRelationshipMergeStrategy)strategy;
+
+/**
+ Instantiate and add an RKObjectRelationshipMapping instance targeting a keyPath within the mappable
+ source data to a relationship property on the target object.
 
  Used to indicate whether the relationship should be included in serialization.
 
@@ -396,6 +425,23 @@ relationship. Relationships are processed using an object mapping as well.
  @see mapKeyPath:toRelationship:withObjectMapping:
  */
 - (void)mapKeyPath:(NSString *)relationshipKeyPath toRelationship:(NSString *)keyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping serialize:(BOOL)serialize;
+
+/**
+ Instantiate and add an RKObjectRelationshipMapping instance targeting a keyPath within the mappable
+ source data to a relationship property on the target object.
+ 
+ Used to indicate whether the relationship should be included in serialization.
+ 
+ @param sourceKeyPath A key-value coding keyPath to fetch the mappable value from
+ @param destinationRelationship The relationship name to assign the mapped value to
+ @param objectMapping An object mapping to use when processing the nested objects
+ @param serialize A boolean value indicating whether to include this relationship in serialization
+ @param strategy A RKRelationshipMergeStrategy value indicating merge strategy for relationship
+
+ @see mapKeyPath:toRelationship:withObjectMapping:
+ */
+
+- (void)mapKeyPath:(NSString *)relationshipKeyPath toRelationship:(NSString *)keyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping serialize:(BOOL)serialize mergeStrategy:(RKRelationshipMergeStrategy)strategy;
 
 /**
  Quickly define a group of attribute mappings using alternating keyPath and attribute names. You must provide
