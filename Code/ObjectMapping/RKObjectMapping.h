@@ -43,6 +43,7 @@ relationship. Relationships are processed using an object mapping as well.
  Instances of RKObjectMapping are used to configure RKObjectMappingOperation instances, which actually
  perform the mapping work. Both object loading and serialization are defined in terms of object mappings.
  */
+
 @interface RKObjectMapping : RKObjectMappingDefinition <NSCopying> {
     Class _objectClass;
     NSMutableArray *_mappings;
@@ -409,7 +410,7 @@ relationship. Relationships are processed using an object mapping as well.
  @see RKObjectRelationshipMapping
  */
 
-- (void)mapKeyPath:(NSString *)relationshipKeyPath toRelationship:(NSString *)keyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping mergeStrategy:(RKRelationshipMergeStrategy)strategy;
+- (void)mapKeyPath:(NSString *)relationshipKeyPath toRelationship:(NSString *)keyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping mergeStrategy:(NSString * const)strategy;
 
 /**
  Instantiate and add an RKObjectRelationshipMapping instance targeting a keyPath within the mappable
@@ -441,7 +442,7 @@ relationship. Relationships are processed using an object mapping as well.
  @see mapKeyPath:toRelationship:withObjectMapping:
  */
 
-- (void)mapKeyPath:(NSString *)relationshipKeyPath toRelationship:(NSString *)keyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping serialize:(BOOL)serialize mergeStrategy:(RKRelationshipMergeStrategy)strategy;
+- (void)mapKeyPath:(NSString *)relationshipKeyPath toRelationship:(NSString *)keyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping serialize:(BOOL)serialize mergeStrategy:(NSString * const)strategy;
 
 /**
  Quickly define a group of attribute mappings using alternating keyPath and attribute names. You must provide

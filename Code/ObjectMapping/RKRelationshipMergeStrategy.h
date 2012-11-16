@@ -1,8 +1,8 @@
 //
-//  ObjectMapping.h
+//  RKRelationshipMergeStrategy.h
 //  RestKit
 //
-//  Created by Blake Watters on 9/30/10.
+//  Created by Alex Ledovskiy on 11/15/12.
 //  Copyright (c) 2009-2012 RestKit. All rights reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +18,15 @@
 //  limitations under the License.
 //
 
-#import "RKRelationshipMergeStrategy.h"
-#import "RKObjectManager.h"
-#import "RKObjectLoader.h"
-#import "RKObjectMapping.h"
-#import "RKObjectSerializer.h"
-#import "RKObjectMappingProvider.h"
-#import "RKObjectMappingResult.h"
-#import "RKObjectMapper.h"
-#import "RKParserRegistry.h"
+/***
+ * RKRelationshipMergeStrategyDefault is set by default
+ * Stratagy by default is RKRelationshipMergeStrategyReplace
+ * RKRelationshipMergeStrategyUnion adds new relationship objects
+ * to the old ones. Old objects are saved.
+ * RKRelationshipMergeStrategyReplace replaces old objects with
+ * the new ones. Old objects are saved, but relationships are removed
+ **/
+
+extern NSString * const RKRelationshipMergeStrategyDefault;
+extern NSString * const RKRelationshipMergeStrategyUnion;
+extern NSString * const RKRelationshipMergeStrategyReplace;

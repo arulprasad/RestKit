@@ -742,6 +742,8 @@
 		73D3907714CA1AE60093E3D6 /* child.json in Resources */ = {isa = PBXBuildFile; fileRef = 73D3907314CA1A4A0093E3D6 /* child.json */; };
 		73D3907914CA1DD40093E3D6 /* channels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 73D3907814CA1D710093E3D6 /* channels.xml */; };
 		73D3907A14CA1DD50093E3D6 /* channels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 73D3907814CA1D710093E3D6 /* channels.xml */; };
+		FA90EE141655B6B100EF28E4 /* RKRelationshipMergeStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = FA90EE131655B6B000EF28E4 /* RKRelationshipMergeStrategy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA90EE1C1655C01100EF28E4 /* RKRelationshipMergeStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = FA90EE131655B6B000EF28E4 /* RKRelationshipMergeStrategy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1228,6 +1230,7 @@
 		73DA8E1B14D1BA960054DD73 /* RKObjectMappingProvider+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RKObjectMappingProvider+CoreData.m"; sourceTree = "<group>"; };
 		73DA8E2014D1C3870054DD73 /* RKObjectMappingProviderContextEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKObjectMappingProviderContextEntry.h; sourceTree = "<group>"; };
 		73DA8E2114D1C3870054DD73 /* RKObjectMappingProviderContextEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKObjectMappingProviderContextEntry.m; sourceTree = "<group>"; };
+		FA90EE131655B6B000EF28E4 /* RKRelationshipMergeStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKRelationshipMergeStrategy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1500,6 +1503,7 @@
 				25160D9F145650490060A5C5 /* RKParserRegistry.m */,
 				25160DA0145650490060A5C5 /* RKRouter.h */,
 				25CA7A8E14EC570100888FF8 /* RKObjectMappingDefinition.m */,
+				FA90EE131655B6B000EF28E4 /* RKRelationshipMergeStrategy.h */,
 			);
 			path = ObjectMapping;
 			sourceTree = "<group>";
@@ -2271,6 +2275,7 @@
 				2572538D155C543000CB05ED /* RKPortCheck.h in Headers */,
 				259D98541550C69A008C90F5 /* RKEntityByAttributeCache.h in Headers */,
 				259D985E155218E5008C90F5 /* RKEntityCache.h in Headers */,
+				FA90EE141655B6B100EF28E4 /* RKRelationshipMergeStrategy.h in Headers */,
 				25545959155F0527007D7625 /* RKBenchmark.h in Headers */,
 				25E4DAB4156DA97F00A5C84B /* RKTableControllerTestDelegate.h in Headers */,
 			);
@@ -2398,6 +2403,7 @@
 				259D985F155218E5008C90F5 /* RKEntityCache.h in Headers */,
 				2554595A155F0527007D7625 /* RKBenchmark.h in Headers */,
 				25E4DAB5156DA97F00A5C84B /* RKTableControllerTestDelegate.h in Headers */,
+				FA90EE1C1655C01100EF28E4 /* RKRelationshipMergeStrategy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

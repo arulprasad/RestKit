@@ -20,12 +20,16 @@
 
 #import "RKObjectRelationshipMapping.h"
 
+NSString * const RKRelationshipMergeStrategyDefault = @"RKRelationshipMergeStrategyDefault";
+NSString * const RKRelationshipMergeStrategyUnion   = @"RKRelationshipMergeStrategyUnion";
+NSString * const RKRelationshipMergeStrategyReplace = @"RKRelationshipMergeStrategyReplace";
+
 @implementation RKObjectRelationshipMapping
 
 @synthesize mapping = _mapping;
 @synthesize reversible = _reversible;
 
-+ (RKObjectRelationshipMapping *)mappingFromKeyPath:(NSString *)sourceKeyPath toKeyPath:(NSString *)destinationKeyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping reversible:(BOOL)reversible mergeStrategy:(RKRelationshipMergeStrategy)strategy
++ (RKObjectRelationshipMapping *)mappingFromKeyPath:(NSString *)sourceKeyPath toKeyPath:(NSString *)destinationKeyPath withMapping:(RKObjectMappingDefinition *)objectOrDynamicMapping reversible:(BOOL)reversible mergeStrategy:(NSString * const)strategy
 {
     RKObjectRelationshipMapping *relationshipMapping = [RKObjectRelationshipMapping mappingFromKeyPath:sourceKeyPath toKeyPath:destinationKeyPath withMapping:objectOrDynamicMapping reversible:reversible];
     relationshipMapping.mergeStrategy = strategy;
