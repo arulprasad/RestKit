@@ -22,7 +22,7 @@
  * RKRelationshipMergeStrategyDefault is set by default
  * Stratagy by default is RKRelationshipMergeStrategyReplace
  * RKRelationshipMergeStrategyUnion adds new relationship objects
- * to the old ones. Old objects are saved.
+ * to the old ones. Old objects are saved without relationship (null).
  * RKRelationshipMergeStrategyReplace replaces old objects with
  * the new ones. Old objects are saved, but relationships are removed
  **/
