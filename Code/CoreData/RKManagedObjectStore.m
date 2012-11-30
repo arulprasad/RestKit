@@ -391,7 +391,8 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 
     // Background threads leverage thread-local storage
     NSManagedObjectContext *managedObjectContext = [self threadLocalObjectForKey:RKManagedObjectStoreThreadDictionaryContextKey];
-    if (!managedObjectContext) {
+//    if (!managedObjectContext) {
+    if ((!managedObjectContext) || (managedObjectContext.persistentStoreCoordinator != self.primaryManagedObjectContext.persistentStoreCoordinator)){
         managedObjectContext = [self newManagedObjectContext];
 
         // Store into thread local storage dictionary

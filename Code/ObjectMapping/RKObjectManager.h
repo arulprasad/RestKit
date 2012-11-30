@@ -330,6 +330,13 @@ typedef enum {
  */
 - (void)loadObjectsAtResourcePath:(NSString *)resourcePath delegate:(id<RKObjectLoaderDelegate>)delegate;
 
+/**
+ Create and send an asynchronous request to send the object and load and map the response at the resource path and call back the delegate
+ with the loaded objects. Remote objects will be mapped to local objects by consulting the keyPath registrations
+ set on the mapping provider.
+ */
+- (void)loadObjectsAtResourcePath:(NSString *)resourcePath method:(RKRequestMethod)method withHTTPBody:(NSData *)data  withHTTPHeaders:(NSDictionary *)headers userData:(NSData*)userData delegate:(id<RKObjectLoaderDelegate>)delegate;
+
 ////////////////////////////////////////////////////////
 /// @name Mappable Object Loaders
 

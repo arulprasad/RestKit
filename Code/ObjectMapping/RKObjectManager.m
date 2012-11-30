@@ -289,6 +289,23 @@ static dispatch_queue_t defaultMappingQueue = nil;
     [loader send];
 }
 
+- (void)loadObjectsAtResourcePath:(NSString *)resourcePath method:(RKRequestMethod)method withHTTPBody:(NSData *)data  withHTTPHeaders:(NSDictionary *)headers userData:(NSData*)userData delegate:(id<RKObjectLoaderDelegate>)delegate
+{
+    RKObjectLoader *loader = [self loaderWithResourcePath:resourcePath];
+    loader.delegate = delegate;
+    loader.method = method;
+    if(userData != nil){
+        [loader setUserData:userData];
+    }
+    if(data != nil){
+        [loader setHTTPBody:data];
+    }
+    if(headers != nil){
+        [loader setAdditionalHTTPHeaders: headers];
+    }
+
+    [loader send];
+}
 /////////////////////////////////////////////////////////////
 #pragma mark - Object Instance Loaders
 
